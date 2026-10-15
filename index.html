@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+
+<!--Question: Develop an Online Quiz Application with multiple-choice questions stored 
+in an array of objects. Allow navigation, calculate the final score, save the highest score
+ in Local Storage, and display it when reopened.-->
+
+<head>
+    <title>bROOOOOOOOOOOOOOOOOOOO</title>
+
+</head>
+<body>
+
+    <header><h1>QUIZ FUCKER</h1></header>
+    <button id = "b1" onclick = "submit()">START THE FUCKING QUIZ</button>
+    <div class = "quiz" id = "quiz" style = "display:none">
+    <p id = "question"> </p>
+    <p id = "options"></p>
+    <input id = "answer" type = "number" >
+    <button onclick = "submit()"  >submit answer</button>
+    <button onclick = "finish()">finish quiz</button>
+    <h3 id = "final_score"></h3>
+    </div>
+    
+    <script>
+        let questions = [{"question":"who are uuuu","options":["1)man ","2)women ","3)unknown ","4)prefer not to say "],"answer":1},
+        {question: "Which tag creates a paragraph?",
+                options: ["1)<h1>", "2<p>", "3)<div>", "4)<br>"],
+                answer: 1},
+                 {question: "Which CSS property changes text color?",
+                options: ["1)background", "2)font-size", "3)color", "4)margin"],
+                answer: 2
+            }]
+            let i =0;
+            let score = 0;
+        
+        function submit(){
+        document.getElementById("quiz").style.display = "block";
+        document.getElementById("b1").style.display = "none";
+        
+        if(i<questions.length){
+        
+        document.getElementById("question").textContent = questions[i].question;
+        document.getElementById("options").textContent =  questions[i].options;
+        let userAns = document.getElementById("answer").value;
+        document.getElementById("answer").value = "";
+        if(userAns == questions[i].answer){
+            score++
+        }
+       
+       
+
+        }
+        else{
+             localStorage.setItem(JSON.stringify({"userScore":score}));
+            finish();
+        }
+    
+    
+    i++;
+    }
+
+        function finish(){
+           localStorage.setItem("userScore", score);
+            let final = JSON.parse(localStorage.getItem("userScore"));
+            document.getElementById("final_score").textContent = "your fucking final score is "+final;
+        
+
+        }
+        
+    </script>
+</body>
+</html>
